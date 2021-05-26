@@ -1,0 +1,46 @@
+.nav{
+    grid-area: n;
+    background-color: rgb(124, 212, 205);
+    font-size: 25px;
+    padding: 20px;
+
+  }
+
+  .item a{
+      color: white;
+      text-decoration: none;
+  }
+
+
+  .item a.activeLink{
+      color: gold;
+      
+  }
+  .friends{
+     
+    margin-top: 40px;
+    grid-template-columns: 2fr 2fr;
+    grid-template-rows: 2fr 2fr;
+    color: white;
+    grid-gap: 1px;
+  }
+
+  .friends .icon{
+    display: grid;
+    grid-template-columns: 2fr 2fr 2fr;
+    grid-template-rows: 2fr 2fr;
+    text-align: center;
+    
+
+  }
+
+.friends .icon a{
+    font-size: 15px;
+    text-decoration: none;
+}
+
+.friends img{
+    height: 36px;
+    width: 36px;
+    border-radius: 30px;
+}

@@ -1,0 +1,12 @@
+.paginator{
+    text-align: center;
+}
+
+.selectedPage{
+    font-weight: bold;
+    border-color: black;
+}
+
+
+
+

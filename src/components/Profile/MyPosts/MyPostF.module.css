@@ -1,0 +1,12 @@
+
+  .newPost{
+
+      width: 650px;
+      height: 80px;
+      border-radius: 10px;
+      border-color: white;
+      background-color: rgb(223, 223, 223);
+      resize: none;
+      font-size: 20px;
+   
+  }

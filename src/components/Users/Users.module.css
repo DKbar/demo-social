@@ -1,0 +1,12 @@
+.user{
+    width: 800px;
+    padding:5px;
+    margin-top: 5px;
+    font-size: 20px;
+    border: solid black 1px;
+    border-radius: 20px;
+}
+
+.users{
+margin-left: 30px;
+}
