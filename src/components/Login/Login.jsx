@@ -4,7 +4,7 @@ import { Redirect } from 'react-router'
 import { Field, reduxForm } from 'redux-form'
 import { login, logout } from '../../redux/auth-reducer'
 import { maxLengthCreator, required } from '../../utils/validators/validators'
-import { Input } from '../common/FormsControls/FormsControls'
+import { createField, Input } from '../common/FormsControls/FormsControls'
 import style from '../common/FormsControls/FormsControls.module.css'
 
 let maxLength20 = maxLengthCreator(20)
@@ -24,20 +24,22 @@ const LoginForm = (props) => {
                 <Field type={'checkbox'} name={'rememberMe'} component={Input} /> remember me
             </div>
             {props.error ?  <div className = {style.formError}>{props.error}</div> : null}
+            {props.captchaUrl ? <img src={props.captchaUrl} className={style.captcha}></img> : null}
+            {props.captchaUrl ? createField("Symbols from image", "captcha", [required], Input) : null}
             <div>
                 <button>Login</button>
             </div>
         </form>
     )
 }
-
+createField("Full name", "fullName", [], Input)
 const LoginReduxForm = reduxForm({
     form: 'login'
 })(LoginForm)
 
 const Login = (props) => {
     const onSubmit = (formData) => {
-        props.login(formData.email, formData.password, formData.rememberMe);
+        props.login(formData.email, formData.password, formData.rememberMe, formData.captcha);
     }
     if (props.isAuth) {
         return <Redirect to={"/profile"} />
@@ -45,7 +47,7 @@ const Login = (props) => {
     return (
         <div>
             <h1>Login</h1>
-            <LoginReduxForm onSubmit={onSubmit} />
+            <LoginReduxForm onSubmit={onSubmit} captchaUrl={props.captchaUrl}/>
         </div>
 
     )
@@ -53,6 +55,7 @@ const Login = (props) => {
 
 const mapStateToProps = (state) => {
     return {
+        captchaUrl:  state.auth.captchaUrl,
         isAuth: state.auth.isAuth
     }
 }
