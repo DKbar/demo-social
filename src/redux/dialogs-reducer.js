@@ -1,19 +1,21 @@
+import js from '../assets/images/js.png'
+import redux from '../assets/images/redux.png'
+import nodeJs from '../assets/images/node js.png'
 const ADD_MESSAGE = 'ADD-MESSAGE';
+
 
 
 let initialState = {
     dialogsData: [
-        { id: 0, name: 'Dima', img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdEhagxuxwfLDUTiifTlmSYv2lMDsaW4LgFA&usqp=CAU' },
-        { id: 1, name: 'Vova', img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQul1HJdYvdDf1X0opEz_jJ3hwsGZF7kblRQ&usqp=CAU' },
-        { id: 2, name: 'Olya', img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZRzqtuNwxENjV4RjHySn_HI-69wvkv2gXhw&usqp=CAU' },
-        { id: 3, name: 'Vera', img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8j5095cJSRBRhk78pnDpbQ5RtWoKLGcFX3g&usqp=CAU' },
-        { id: 4, name: 'Dima L', img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRS6ozcekOzK3nXJZTZQMMVPKHDy44Slzr34Q&usqp=CAU' },
+        { id: 0, name: 'Dima', img: js },
+        { id: 1, name: 'Vova', img: redux },
+        { id: 2, name: 'Olya', img: nodeJs },
     ],
     messagesData: [
         { id: 0, message: 'Hi', mymessage: false },
         { id: 1, message: 'Hi', mymessage: true },
-        { id: 2, message: 'You\'re drinking beer?', mymessage: false },
-        { id: 3, message: 'No', mymessage: true },
+        { id: 2, message: 'How are you?', mymessage: false },
+        { id: 3, message: 'OK', mymessage: true },
 
     ],
     newMessageText: '',
