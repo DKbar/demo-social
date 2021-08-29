@@ -72,11 +72,11 @@ let AppContainer = compose(
 
 
 const MainApp = () => {
-  return <BrowserRouter>
+  return <HashRouter>
     <Provider store={store} >
       <AppContainer />
     </Provider>
-  </BrowserRouter>
+  </HashRouter>
 };
 
 export default MainApp;
