@@ -7,7 +7,7 @@ const UNFOLLOW = 'UNFOLLOW';
 const SET_USERS = 'SET-USERS'
 const SET_CURRENT_PAGE = 'SET-CURRENT-PAGE'
 const SET_TOTAL_USERS_COUNT = 'SET_TOTAL_USERS_COUNT'
-const TOGGLE_IS_FETCHING = 'TOOGLE_IS_FETCHING'
+const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING'
 const TOGGLE_IS_FOLLOWING_PROGRESS = 'TOGGLE_IS_FOLLOWING_PROGRESS'
 
 
@@ -16,7 +16,7 @@ let initialState = {
     users: [] as Array<UsersType>,
     pageSize: 20 as number,
     totalUsersCount: 0 as number,
-    currentPage: 1 as number,
+    currentPage: 1,
     isFetching: true as boolean,
     followingInProgress: [] as Array<number>  //array of users id
 }
@@ -24,6 +24,7 @@ let initialState = {
 export type InitialStateType = typeof initialState
 
 const usersReducer = (state = initialState, action: any): InitialStateType => {
+    debugger
     switch (action.type) {
         case FOLLOW:
             /*             let stateCopy = { ...state }

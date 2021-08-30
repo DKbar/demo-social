@@ -1,11 +1,21 @@
 import React from "react";
-import Paginator from "../common/Paginator/Paginator";
+import { UsersType } from "../../types/types";
 import User from "./User/User";
 import s from './Users.module.css'
 
+type PropsType = {
+    currentPage: number
+    totalUsersCount: number
+    pageSize: number
+    users: Array<UsersType>
+    followingInProgress: Array<number>
+    unfollow: (id: number) => void
+    follow: (id: number) => void
+    /* showmore: (currentPage: number) => void */
+    /* onPageChange: () => void */
+}
 
-
-let Users = ({ currentPage, onPageChange, totalUsersCount, pageSize, ...props }) => {
+let Users: React.FC<PropsType> = ({ currentPage, /* onPageChange, */ totalUsersCount, pageSize, ...props }) => {
 
     return (
         <div className={s.users}>
@@ -14,7 +24,7 @@ let Users = ({ currentPage, onPageChange, totalUsersCount, pageSize, ...props })
                 {props.users.map((user) => {
                     return (
                         <div className={s.user} key={user.id}>
-                            <User id={user.id} name={user.name} uniqueUrlName={user.uniqueUrlName}
+                            <User id={user.id} name={user.name} /* uniqueUrlName={user.uniqueUrlName} */
                                 photos={user.photos.small} photol={user.photos.large} status={user.status} />
                             <div>
                                 {user.followed
@@ -29,7 +39,7 @@ let Users = ({ currentPage, onPageChange, totalUsersCount, pageSize, ...props })
                     )
                 })
                 }
-                <button onClick={() => props.showmore(props.currentPage)}>show more</button>
+                {/* <button onClick={() => props.showmore(currentPage)}>show more</button> */}
             </div>
         </div>
     )
