@@ -1,19 +1,24 @@
-import React from 'react';
-import { Redirect } from 'react-router';
+import { DialogType, MessageType } from '../../redux/dialogs-reducer';
 import DialogItem from './DialogItem/DialogItem';
 import s from './Dialogs.module.css';
 import DialogsReduxForm from './DialogsForm';
 import MessageItem from './MessageItem/MessageItem';
 
 
-const Dialogs = (props) => {
+type PropsType = {
+    dialogsData: Array<DialogType>
+    messagesData: Array<MessageType>
+    addMessage: (values: any) => void
+}
 
-    let dialogsElement = props.dialogsData.map(dialog => {
+const Dialogs: React.FC<PropsType>  = ({dialogsData, messagesData, addMessage}) => {
+
+    let dialogsElement = dialogsData.map(dialog => {
         return <DialogItem key={dialog.id} name={dialog.name} id={dialog.id} img={dialog.img} />
     });
 
-    let messagesElement = props.messagesData.map(message => {
-        return <MessageItem key={message.id} message={message.message} id={message.id} mymessage={message.mymessage} />
+    let messagesElement = messagesData.map(message => {
+        return <MessageItem key={message.id} message={message.message} mymessage={message.mymessage} />
     });
 
 
@@ -27,8 +32,8 @@ const Dialogs = (props) => {
     
         } */
 
-    const addNewMessage = (values) => {
-        props.addMessage(values.newMessage)
+    const addNewMessage = (values: any) => {
+        addMessage(values.newMessage)
     }
 
     return (

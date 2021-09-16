@@ -1,9 +1,10 @@
-import React from 'react';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { WithAuthRedirect } from '../../hoc/withAuthRedirect';
-import { addMessageCreator } from '../../redux/dialogs-reducer';
+import { addMessageCreator, DialogType, MessageType } from '../../redux/dialogs-reducer';
+import { AppStateType } from '../../redux/redux-store';
 import Dialogs from './Dialogs';
+
 
 
 
@@ -39,14 +40,27 @@ import Dialogs from './Dialogs';
 
 } */
 
-let mapStateToProps = (state) => {
+type MapStateToPropsType = {
+    dialogsData: Array<DialogType>
+    messagesData: Array<MessageType>
+}
+
+type MapDispatchToPropsType = {
+    addMessage: (message: string) => void
+}
+
+type MapOwnPropsType = {}
+    
+
+
+let mapStateToProps = (state: AppStateType): MapStateToPropsType => {
     return {
         dialogsData: state.dialogsPage.dialogsData,
         messagesData: state.dialogsPage.messagesData, 
     }
 }
 
-let mapDispatchToProps = (dispatch) => {
+let mapDispatchToProps = (dispatch: any): MapDispatchToPropsType => {
     return {
         addMessage: (message) => {
             dispatch(addMessageCreator(message))
@@ -55,6 +69,6 @@ let mapDispatchToProps = (dispatch) => {
 }
 
 export default compose(
-    connect(mapStateToProps, mapDispatchToProps),
+    connect<MapStateToPropsType, MapDispatchToPropsType, MapOwnPropsType, AppStateType>(mapStateToProps, mapDispatchToProps),
     WithAuthRedirect
 )(Dialogs)

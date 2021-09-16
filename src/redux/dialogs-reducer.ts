@@ -4,13 +4,13 @@ import nodeJs from '../assets/images/node js.png'
 
 const ADD_MESSAGE = 'ADD-MESSAGE';
 
-type DialogType = {
+export type DialogType = {
     id: number
     name: string
     img: string
 }
 
-type MessageType = {
+export type MessageType = {
     id: number
     message: string
     mymessage: boolean
