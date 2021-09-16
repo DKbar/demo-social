@@ -1,14 +1,22 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { DialogType } from '../../redux/dialogs-reducer';
 import s from './Navbar.module.css'
 
-const Navbar = (props) => {
+
+
+type PropsType = {
+    friends: Array<DialogType> 
+
+}
+
+const Navbar: React.FC<PropsType> = ({friends}) => {
    
-    let friends = props.friends.map(friend => { 
+    let friends1 = friends.map(friend => { 
         return (
             <NavLink  to={friend.name} key={friend.id}>
 
-                <img src={friend.img}></img>
+                <img src={friend.img} alt=""></img>
                 <span>{friend.name}</span>
 
             </NavLink>
@@ -56,7 +64,7 @@ const Navbar = (props) => {
 
             <div className={s.friends}>
                 <div>Friends</div>
-                <div className={s.icon} >{friends}</div>
+                <div className={s.icon} >{friends1}</div>
             </div>
             
         </nav>

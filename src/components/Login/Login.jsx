@@ -24,7 +24,7 @@ const LoginForm = (props) => {
                 <Field type={'checkbox'} name={'rememberMe'} component={Input} /> remember me
             </div>
             {props.error ? <div className={style.formError}>{props.error}</div> : null}
-            {props.captchaUrl ? <img src={props.captchaUrl} className={style.captcha}></img> : null}
+            {props.captchaUrl ? <img src={props.captchaUrl} className={style.captcha } alt=""></img> : null}
             {props.captchaUrl ? createField("Symbols from image", "captcha", [required], Input) : null}
             <div>
                 <button>Login</button>
