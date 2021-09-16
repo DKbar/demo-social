@@ -27,7 +27,7 @@ const Dialogs = (props) => {
     
         } */
 
-    const addNewMessage = (values) => {debugger
+    const addNewMessage = (values) => {
         props.addMessage(values.newMessage)
     }
 

@@ -4,7 +4,7 @@ import preloader from '../../../assets/images/loading.gif'
 export default function Preloader() {
     return (
         <div>
-            <img src={preloader}/>
+            <img src={preloader} alt="" />
         </div>
        
     )
