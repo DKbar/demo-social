@@ -1,4 +1,5 @@
-import * as axios from "axios";
+import { ProfileType } from './../types/types';
+import axios from "axios";
 
 
 const instance = axios.create({
@@ -10,21 +11,21 @@ const instance = axios.create({
 
 
 export const usersAPI = {
-    getUsers(currentPage, pageSize) {
+    getUsers(currentPage: number, pageSize: number) {
         return instance.get(`users?page=${currentPage}&count=${pageSize}`)
             .then(response => {
                 return response
             })
     },
 
-    unfollow(id) {
+    unfollow(id: number) {
         return instance.delete(`follow/${id}`)
             .then(response => {
                 return response
             })
     },
 
-    follow(id) {
+    follow(id: number) {
         return instance.post(`follow/${id}`)
             .then(response => {
                 return response
@@ -33,19 +34,19 @@ export const usersAPI = {
 }
 
 export const profileAPI = {
-    getProfile(userId) {
+    getProfile(userId: number) {
         return instance.get(`profile/` + userId)
 
     },
-    getStatus(userId) {
+    getStatus(userId: number) {
         return instance.get('profile/status/' + userId)
     },
 
-    updateStatus(status) {
+    updateStatus(status: string) {
         return instance.put('profile/status/', { status: status })
     },
 
-    savePhoto(photoFile) {
+    savePhoto(photoFile: string) {
         const formData = new FormData();
         formData.append('image', photoFile)
         return instance.put('profile/photo/', formData, {
@@ -54,27 +55,50 @@ export const profileAPI = {
             }
         });
     },
-    saveProfile(profile) {
+    saveProfile(profile: ProfileType) {
         return instance.put('profile/', profile);
     }
 
 
 }
 
+export enum ResultCodesEnum {
+    Success = 0,
+    Error = 1,
+} 
+
+export enum ResultCodesForCaptcha {
+    CaptchaIsRequired = 10
+} 
+type GetAuthType = {
+    data: {id: number, email: string, login: string}
+    resultCode: ResultCodesEnum
+    messages: Array<string>
+}
+
+type LoginType = {
+    data: {userId: number}
+    resultCode: ResultCodesEnum | ResultCodesForCaptcha,
+    messages: Array<string>
+}
+
+type LogoutType = {
+    data: {}
+    resultCode: ResultCodesEnum,
+    messages: Array<string>
+}
+
 export const authAPI = {
     getAuth() {
-        return instance.get(`auth/me`)
-            .then(response => {
-                return response
-            })
+        return instance.get<GetAuthType>(`auth/me`).then (res => res.data)
     },
 
-    login(email, password, rememberMe = false, captcha = null) {
-        return instance.post(`auth/login`, { email, password, rememberMe, captcha})
+    login(email: string, password: string, rememberMe: boolean = false, captcha: string | null = null) {
+        return instance.post<LoginType>(`auth/login`, { email, password, rememberMe, captcha}).then (res => res.data)
     },
 
     logout() {
-        return instance.delete(`auth/login`)
+        return instance.delete<LogoutType>(`auth/login`).then(res => res.data)
     },
 }
 export const securityAPI = {
