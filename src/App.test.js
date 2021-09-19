@@ -1,9 +1,9 @@
-import { render, screen } from '@testing-library/react';
+/* import { render, screen } from '@testing-library/react';
 import { Provider } from 'react-redux';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom'; */
 import MainApp from './App';
-import App from './App';
-import store from './redux/redux-store';
+/* import App from './App';
+import store from './redux/redux-store'; */
 import ReactDOM from 'react-dom'
 
 

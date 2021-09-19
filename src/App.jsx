@@ -7,7 +7,7 @@ import Settings from './components/Settings/Settings';
 import NavbarContainer from './components/Navbar/NavbarContainer';
 import UsersContainer from './components/Users/UsersContainer';
 import HeaderContainer from './components/Header/HeaderContainer';
-import Login from './components/Login/Login';
+import Login from './components/Login/Login.tsx';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import appReducer, { initializeApp } from './redux/app-reducer';
