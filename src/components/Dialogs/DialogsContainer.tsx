@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { WithAuthRedirect } from '../../hoc/withAuthRedirect';
-import { addMessageCreator, DialogType, MessageType } from '../../redux/dialogs-reducer';
+import { actions, DialogType, MessageType } from '../../redux/dialogs-reducer';
 import { AppStateType } from '../../redux/redux-store';
 import Dialogs from './Dialogs';
 
@@ -63,7 +63,7 @@ let mapStateToProps = (state: AppStateType): MapStateToPropsType => {
 let mapDispatchToProps = (dispatch: any): MapDispatchToPropsType => {
     return {
         addMessage: (message) => {
-            dispatch(addMessageCreator(message))
+            dispatch(actions.addMessageCreator(message))
         }
     }
 }

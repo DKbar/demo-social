@@ -1,8 +1,7 @@
-import { AppStateType, InferActionsTypes } from './redux-store';
+import { AppStateType, InferActionsTypes, BaseThunkType } from './redux-store';
 import { UsersType } from './../types/types';
 import { ResultCodesEnum } from "../api/api"
 import { Dispatch } from 'react';
-import { ThunkAction } from 'redux-thunk';
 import { usersAPI } from '../api/users-api';
 
 
@@ -70,7 +69,7 @@ const usersReducer = (state = initialState, action: ActionsTypes): InitialStateT
     }
 }
 
-export const actions = {
+const actions = {
     followSuccess: (id: number) => ({
             type: 'FOLLOW',
             userid: id
@@ -112,7 +111,7 @@ export const actions = {
 
 type CurrentDispatchType = Dispatch<ActionsTypes>
 type GetStateType = () => AppStateType
-type ThunkType = ThunkAction<Promise<void>, AppStateType, unknown, ActionsTypes> 
+type ThunkType = BaseThunkType<ActionsTypes> 
 
 export const getUsers = (currentPage: number, pageSize: number)=> async (dispatch: CurrentDispatchType, getState: GetStateType) => {
         dispatch(actions.setCurrentPage(currentPage))
@@ -133,7 +132,7 @@ export const follow = (id: number): ThunkType => async (dispatch, getState) => {
 }
 
 
-export const unfollow = (id: number): ThunkType => async (dispatch, getState) => {
+export const unfollow = (id: number): ThunkType => async (dispatch) => {
         dispatch(actions.toggleFollowingProgress(true, id))
         let unfollowData = await usersAPI.unfollow(id)
             if (unfollowData.resultCode === ResultCodesEnum.Success) {

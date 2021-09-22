@@ -1,8 +1,7 @@
 import js from '../assets/images/js.png'
 import redux from '../assets/images/redux.png'
 import nodeJs from '../assets/images/node js.png'
-
-const ADD_MESSAGE = 'ADD-MESSAGE';
+import { InferActionsTypes, /* BaseThunkType */ } from './redux-store';
 
 export type DialogType = {
     id: number
@@ -33,10 +32,12 @@ let initialState = {
 };
 
 export type InitialStateType = typeof initialState
+type ActionsTypes = InferActionsTypes<typeof actions>
+/* type ThunkAction = BaseThunkType<ActionsTypes> */
 
-const dialogsReducer = (state = initialState, action: any): InitialStateType  => {
+const dialogsReducer = (state = initialState, action: ActionsTypes): InitialStateType  => {
     switch (action.type) {
-        case ADD_MESSAGE:
+        case 'ADD_MESSAGE':
             let newMessage = {
                 id: 4,
                 message: action.message,
@@ -50,16 +51,13 @@ const dialogsReducer = (state = initialState, action: any): InitialStateType  =>
             return state;
     }
 }
-type AddMessageCreatorActionType = {
-    type: typeof ADD_MESSAGE,
-    message: string
-}
 
-export const addMessageCreator = (message: string): AddMessageCreatorActionType => {
-    return {
-        type: ADD_MESSAGE,
-        message
-    }
+export const actions = {
+ addMessageCreator: (message: string) =>( {
+            type: 'ADD_MESSAGE',
+            message
+    }) as const,
+    
 }
 
 

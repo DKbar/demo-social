@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { addPost } from '../../../redux/profile-reducer';
+import { actions } from '../../../redux/profile-reducer';
 import MyPosts from './MyPosts';
 
 
@@ -43,7 +43,7 @@ const mapDispatchToProps = (dispatch) => {
     return {
 
         addPost: (newPost) => {
-            dispatch(addPost(newPost))
+            dispatch(actions.addPost(newPost))
         }
     }
 }
