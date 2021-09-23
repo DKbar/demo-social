@@ -49,8 +49,7 @@ type MapStatePropsType = {
 }
 
 type MapDispatchPropsType = {
-    login: (email: string, password: string, rememberMe: boolean, captcha: string | null) => void 
-    logout: () => void 
+    login: (email: string, password: string, rememberMe: boolean, captcha: string)  => void 
 }
 
 

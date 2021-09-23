@@ -30,8 +30,8 @@ const actions = {
 
  initializedSuccess: () => ({ type: 'INITIALIZED_SUCCESS' }) as const
 }
-/* type ThunkType = ThunkAction<void, AppStateType, unknown, ActionsTypes> //?? */
-export const initializeApp = () => (dispatch: any) => {
+type ThunkType = ThunkAction<void, AppStateType, unknown, ActionsTypes> //??
+export const initializeApp = ():ThunkType => (dispatch) => {
     let promise = dispatch(getAuth());
     promise.then(() => dispatch(actions.initializedSuccess()))
 }
