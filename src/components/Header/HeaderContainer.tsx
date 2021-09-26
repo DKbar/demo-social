@@ -9,7 +9,7 @@ type MapStateToPropsType = {
     userId: number | null
     email: string | null
     login: string | null
-    captcha: string | null
+/*     captcha: string | null */
 }
 
 type MapDispatchToPropsType = {

@@ -1,19 +1,19 @@
 import React, { Suspense } from 'react';
 import './App.css';
 import News from './components/News/News';
-import { BrowserRouter, HashRouter, Redirect, Route, Switch, withRouter } from 'react-router-dom'
+import { /* BrowserRouter,  */HashRouter, Redirect, Route, Switch, withRouter } from 'react-router-dom'
 import Music from './components/Music/Music';
 import Settings from './components/Settings/Settings';
 import NavbarContainer from './components/Navbar/NavbarContainer';
 import UsersContainer from './components/Users/UsersContainer';
 import HeaderContainer from './components/Header/HeaderContainer';
-import Login from './components/Login/Login.tsx';
+import Login from './components/Login/Login';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-import appReducer, { initializeApp } from './redux/app-reducer';
+import { initializeApp } from './redux/app-reducer';
 import Preloader from './components/common/preloader/Preloader';
 import { Provider } from 'react-redux';
-import store from './redux/redux-store';
+import store, { AppStateType } from './redux/redux-store';
 
 
 //import DialogsContainer from './components/Dialogs/DialogsContainer';
@@ -21,7 +21,13 @@ import store from './redux/redux-store';
 const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsContainer'))
 const ProfileContainer = React.lazy(() => import('./components/Profile/ProfileContainer'))
 
-class App extends React.Component {
+     
+type MapStatePropsType = ReturnType<typeof mapStateToProps>
+type MapDispatchPropsType = {
+  initializeApp: () => void
+}
+
+class App extends React.Component <MapStatePropsType & MapDispatchPropsType> {
   componentDidMount() {
     this.props.initializeApp();
   }
@@ -59,19 +65,19 @@ class App extends React.Component {
   }
 }
 
-const mapPropsToState = (state) => {
+const mapStateToProps = (state: AppStateType) => {
   return {
     initialized: state.app.initialized
   }
 }
 
-let AppContainer = compose(
+let AppContainer = compose<React.ComponentType>(
   withRouter,
-  connect(mapPropsToState, { initializeApp })
+  connect(mapStateToProps, { initializeApp })
 )(App);
 
 
-const MainApp = () => {
+const MainApp: React.FC = () => {
   return <HashRouter>
     <Provider store={store} >
       <AppContainer />

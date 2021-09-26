@@ -8,7 +8,7 @@ import MessageItem from './MessageItem/MessageItem';
 type PropsType = {
     dialogsData: Array<DialogType>
     messagesData: Array<MessageType>
-    addMessage: (values: any) => void
+    addMessage: (newMessage: string) => void
 }
 
 const Dialogs: React.FC<PropsType>  = ({dialogsData, messagesData, addMessage}) => {
@@ -32,7 +32,7 @@ const Dialogs: React.FC<PropsType>  = ({dialogsData, messagesData, addMessage}) 
     
         } */
 
-    const addNewMessage = (values: any) => {
+    const addNewMessage = (values: {newMessage: string}) => {
         addMessage(values.newMessage)
     }
 

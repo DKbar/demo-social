@@ -5,27 +5,27 @@ import Navbar from './Navbar';
 /* import s from './Navbar.module.css' */
 
 
-type MapStateToPropsType = {
+/* type MapStateToPropsType = {
     friends: Array<DialogType>
 
 }
 
 type MapDispatchToPropsType = {
     
-}
+} */
 
 
-let mapStateToProps = (state: AppStateType) => {
+let mapStateToProps = (state) => {
     return {
         friends: state.dialogsPage.dialogsData,
     }
 }
 
-let mapDispatchToProps = (dispatch: any) => {
+/* let mapDispatchToProps = (dispatch: any) => {
     return {
     }
-}
+} */
 
-const NavbarContainer = connect<MapStateToPropsType, MapDispatchToPropsType, null, AppStateType>(mapStateToProps, mapDispatchToProps)(Navbar);
+const NavbarContainer = connect/* <MapStateToPropsType, MapDispatchToPropsType, null, AppStateType> */(mapStateToProps, /* mapDispatchToProps */)(Navbar);
 
 export default NavbarContainer;

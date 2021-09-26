@@ -25,7 +25,7 @@ let Users: React.FC<PropsType> = ({ currentPage, /* onPageChange, */ totalUsersC
                     return (
                         <div className={s.user} key={user.id}>
                             <User id={user.id} name={user.name} /* uniqueUrlName={user.uniqueUrlName} */
-                                photos={user.photos.small} photol={user.photos.large} status={user.status} />
+                                photos={user.photos}  status={user.status} />
                             <div>
                                 {user.followed
                                     ? <button disabled={props.followingInProgress.some(id => id === user.id)} onClick={() => {

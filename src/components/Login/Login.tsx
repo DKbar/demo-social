@@ -92,5 +92,5 @@ const mapStateToProps = (state: AppStateType): MapStatePropsType => {
 }
 
 export default connect(mapStateToProps,
-    { login })(Login);
+    { login })(Login) as React.ComponentType;
 

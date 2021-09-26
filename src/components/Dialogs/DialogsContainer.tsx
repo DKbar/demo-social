@@ -60,15 +60,7 @@ let mapStateToProps = (state: AppStateType): MapStateToPropsType => {
     }
 }
 
-let mapDispatchToProps = (dispatch: any): MapDispatchToPropsType => {
-    return {
-        addMessage: (message) => {
-            dispatch(actions.addMessageCreator(message))
-        }
-    }
-}
-
 export default compose(
-    connect<MapStateToPropsType, MapDispatchToPropsType, MapOwnPropsType, AppStateType>(mapStateToProps, mapDispatchToProps),
+    connect<MapStateToPropsType, MapDispatchToPropsType, MapOwnPropsType, AppStateType>(mapStateToProps, {addMessage: actions.addMessageCreator}),
     WithAuthRedirect
-)(Dialogs)
+)(Dialogs) as React.ComponentType
