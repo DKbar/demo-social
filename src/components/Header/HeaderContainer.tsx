@@ -38,6 +38,6 @@ const mapStateToProps = (state: AppStateType) => {
     }
 }
 
-export default connect(mapStateToProps, {logout})(HeaderContainer);
+export default connect<MapStateToPropsType, MapDispatchToPropsType, {}, AppStateType >(mapStateToProps, {logout})(HeaderContainer);
 
 
