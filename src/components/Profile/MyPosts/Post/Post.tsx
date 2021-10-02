@@ -1,12 +1,15 @@
-import React from 'react';
 import s from './Post.module.css'
 import img from '../../../../assets/images/IMG_React.png'
 
-const Post = (props) => {
-    console.log (11)
+type PropsType = {
+    likesCount: number
+    message: string
+}
+
+const Post: React.FC<PropsType> = (props) => {
     return (
         <div className={s.item}>
-            <img src={img}/>
+            <img src={img} alt=""/>
             {props.message}
             <div> 
                 <span className={s.heart}>&#9825;</span>
